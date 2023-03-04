@@ -1,17 +1,49 @@
-version: "2.0"
-
-intents:
-  - greet
-  - mood_great
-
-responses:
-  utter_greet:
-    - text: Hey! How are you?
-    - text: Hi, how's it going?
-  utter_happy:
-    - text: Great, carry on!
-    - text: Awesome!
-
+version: '2.0'
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
+intents:
+- inform_frequency
+- chitchat
+- subscribe
+- inform_email
+- affirm
+- greet
+- mood_great
+- deny
+entities:
+- email
+slots:
+  email:
+    type: text
+    influence_conversation: false
+  frequency:
+    type: text
+    influence_conversation: false
+responses:
+  utter_greet:
+  - text: Hey! How are you?
+  - text: Hi, how's it going?
+  utter_happy:
+  - text: Great, carry on!
+  - text: Awesome!
+  utter_ask_email:
+  - text: What is your email address?
+  utter_ask_frequency:
+  - text: How often do you want to receive emails from me?
+  utter_subscribed:
+  - text: You're all set! Check your inbox at {email} to confirm your subscription. You will receive emails {frequency}.
+  utter_ask_continue:
+  - text: Sorry, I don't quite understand. Do you want to continue?
+actions:
+- utter_ask_continue
+- utter_subscribed
+forms:
+  newsletter_form:
+    required_slots:
+      email:
+      - type: from_entity
+        entity: email
+      frequency:
+      - type: from_text
+        intent: inform_frequency
