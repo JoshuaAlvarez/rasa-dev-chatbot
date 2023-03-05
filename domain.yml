@@ -1,49 +1,111 @@
-version: '2.0'
+version: "2.0"
+
 session_config:
   session_expiration_time: 60
-  carry_over_slots_to_new_session: true
+  carry_over_slots_to_new_session: false
+
 intents:
-- inform_frequency
-- chitchat
-- subscribe
-- inform_email
-- affirm
-- greet
-- mood_great
-- deny
+  - inform_frequency
+  - chitchat
+  - subscribe
+  - inform_email
+  - affirm
+  - greet
+  - mood_great
+  - deny
+  - ask_price
+  - explain
+  - mood_bad
+  - goodbye
+  - ask_how_i_feel
+  - confirm
+  - thankyou
+  - inform_age
+
 entities:
-- email
+  - email
+  - age
+
 slots:
   email:
     type: text
     influence_conversation: false
   frequency:
+    type: categorical
+    values:
+      - once a week
+      - twice a week
+    influence_conversation: true
+  notification:
+    type: bool
+    influence_conversation: false
+  requested_slot:
+    type: categorical
+    influence_conversation: true
+    values:
+      - email
+      - frequency
+  age:
     type: text
     influence_conversation: false
+
 responses:
   utter_greet:
-  - text: Hey! How are you?
-  - text: Hi, how's it going?
+    - text: Hey! How are you?
+    - text: Hi, how's it going?
   utter_happy:
-  - text: Great, carry on!
-  - text: Awesome!
+    - text: Great, carry on!
+    - text: Awesome!
   utter_ask_email:
-  - text: What is your email address?
+    - text: What is your email address?
   utter_ask_frequency:
-  - text: How often do you want to receive emails from me?
+    - text: How often do you want to receive emails from me?
+  utter_ask_notification:
+    - text: Do you want notifications?
   utter_subscribed:
-  - text: You're all set! Check your inbox at {email} to confirm your subscription. You will receive emails {frequency}.
+    - text: You're all set! Check your inbox at {email} to confirm your subscription. You will receive emails {frequency}.
   utter_ask_continue:
-  - text: Sorry, I don't quite understand. Do you want to continue?
+    - text: Sorry, I don't quite understand. Do you want to continue?
+  utter_price_for_once_a_week:
+    - text: Once a week subscription costs $5.
+  utter_price_for_twice_a_week:
+    - text: Twice a week subscription costs $10.
+  utter_explain_email:
+    - text: So that I know where to send it.
+  utter_explain_frequency:
+    - text: So that I know how often to send it.
+  utter_ask_user_question:
+    - text: How do you feel?
+  utter_great:
+    - text: Glad to hear that!
+  utter_bad:
+    - text: I'm sorry to hear that.
+  utter_goodbye:
+    - text: Bye
+  utter_ask_confirm:
+    - text: Do you really want to confirm that?
+  utter_confirmed:
+    - text: Confirmed.
+  utter_age_back:
+    - text: Your age is {age}.
+  utter_email_back:
+    - text: Your email is {email}.
+
 actions:
-- utter_ask_continue
-- utter_subscribed
+  - utter_ask_continue
+  - utter_subscribed
+
 forms:
   newsletter_form:
     required_slots:
       email:
-      - type: from_entity
-        entity: email
+        - type: from_entity
+          entity: email
       frequency:
-      - type: from_text
-        intent: inform_frequency
+        - type: from_text
+          intent: inform_frequency
+      notification:
+        - type: from_text
+          intent:
+            - affirm
+            - deny

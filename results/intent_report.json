@@ -1,16 +1,23 @@
 {
-  "inform_frequency": {
+  "chitchat": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
-    "support": 5,
+    "support": 17,
     "confused_with": {}
   },
-  "subscribe": {
+  "mood_great": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
-    "support": 5,
+    "support": 14,
+    "confused_with": {}
+  },
+  "greet": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 13,
     "confused_with": {}
   },
   "deny": {
@@ -34,25 +41,25 @@
     "support": 16,
     "confused_with": {}
   },
-  "greet": {
+  "subscribe": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
-    "support": 13,
+    "support": 5,
     "confused_with": {}
   },
-  "chitchat": {
+  "ask_price": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
-    "support": 17,
+    "support": 4,
     "confused_with": {}
   },
-  "mood_great": {
+  "inform_frequency": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
-    "support": 14,
+    "support": 5,
     "confused_with": {}
   },
   "accuracy": 1.0,
@@ -60,12 +67,12 @@
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
-    "support": 88
+    "support": 92
   },
   "weighted avg": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
-    "support": 88
+    "support": 92
   }
 }

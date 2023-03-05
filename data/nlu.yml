@@ -1,106 +1,173 @@
 version: "2.0"
 nlu:
-- intent: greet
-  examples: |
-    - hey
-    - hello
-    - hi
-    - hello there
-    - good morning
-    - good evening
-    - moin
-    - hey there
-    - let's go
-    - hey dude
-    - goodmorning
-    - goodevening
-    - good afternoon
-- intent: mood_great
-  examples: |
-    - perfect
-    - great
-    - amazing
-    - feeling like a king
-    - wonderful
-    - I am feeling very good
-    - I am great
-    - I am amazing
-    - I am going to save the world
-    - super stoked
-    - extremely good
-    - so so perfect
-    - so good
-    - so perfect
-- intent: subscribe
-  examples: |
-    - I want to get the newsletter
-    - Can you send me the newsletter?
-    - Can you sign me up for the newsletter?
-    - I want to subscribe to a newsletter
-    - I want to subscribe
-- intent: inform_email
-  examples: |
-    - My email is [example@example.com](email)
-    - [random@example.com](email)
-    - Please send it to [anything@example.com](email)
-    - Email is [something@example.com](email)
-    - My email is [developer@email.com](email)
-- intent: inform_frequency
-  examples: |
-    - every week
-    - once a week
-    - twice per month
-    - as ofter as possible
-    - once a month
-- intent: chitchat
-  examples: |
-    - that's not what I want to do
-    - wait stop
-    - you're no help
-    - this is no help at all
-    - how old are you
-    - I want to order a pizza
-    - tell me the weather
-    - this isn't working
-    - I already told you that
-    - don't like that
-    - I don't want to tell you that
-    - none of your business
-    - that's not right
-    - stop asking
-    - nevermind
-    - I want to do something else
-    - I changed my mind
-- intent: affirm
-  examples: |
-    - yes
-    - indeed
-    - of course
-    - that sounds good
-    - correct
-    - sure
-    - ok
-    - why not
-    - ok great
-    - yes I did
-    - yeah, great
-    - pretty good
-    - fine
-    - You bet
-    - I sure did
-    - more or less
-- intent: deny
-  examples: |
-    - no
-    - never
-    - I don't think so
-    - no way
-    - not really
-    - none
-    - absolutely not
-    - no thanks
-    - didn't do any
-    - no I didn't
-    - could have been better
-    - not great
-    - nope
+  - intent: greet
+    examples: |
+      - hey
+      - hello
+      - hi
+      - hello there
+      - good morning
+      - good evening
+      - moin
+      - hey there
+      - let's go
+      - hey dude
+      - goodmorning
+      - goodevening
+      - good afternoon
+  - intent: mood_great
+    examples: |
+      - perfect
+      - great
+      - amazing
+      - feeling like a king
+      - wonderful
+      - I am feeling very good
+      - I am great
+      - I am amazing
+      - I am going to save the world
+      - super stoked
+      - extremely good
+      - so so perfect
+      - so good
+      - so perfect
+  - intent: subscribe
+    examples: |
+      - I want to get the newsletter
+      - Can you send me the newsletter?
+      - Can you sign me up for the newsletter?
+      - I want to subscribe to a newsletter
+      - I want to subscribe
+  - intent: inform_email
+    examples: |
+      - My email is [example@example.com](email)
+      - [random@example.com](email)
+      - Please send it to [anything@example.com](email)
+      - Email is [something@example.com](email)
+      - My email is [developer@email.com](email)
+  - intent: inform_frequency
+    examples: |
+      - every week
+      - once a week
+      - twice per month
+      - as often as possible
+      - once a month
+  - intent: chitchat
+    examples: |
+      - that's not what I want to do
+      - wait stop
+      - you're no help
+      - this is no help at all
+      - how old are you
+      - I want to order a pizza
+      - tell me the weather
+      - this isn't working
+      - I already told you that
+      - don't like that
+      - I don't want to tell you that
+      - none of your business
+      - that's not right
+      - stop asking
+      - nevermind
+      - I want to do something else
+      - I changed my mind
+  - intent: affirm
+    examples: |
+      - yes
+      - indeed
+      - of course
+      - that sounds good
+      - correct
+      - sure
+      - ok
+      - why not
+      - ok great
+      - yes I did
+      - yeah, great
+      - pretty good
+      - fine
+      - You bet
+      - I sure did
+      - more or less
+  - intent: deny
+    examples: |
+      - no
+      - never
+      - I don't think so
+      - no way
+      - not really
+      - none
+      - absolutely not
+      - no thanks
+      - didn't do any
+      - no I didn't
+      - could have been better
+      - not great
+      - nope
+  - intent: ask_price
+    examples: |
+      - how much will it be
+      - what's the price
+      - how much will it cost
+      - How much will I pay?
+  - intent: explain
+    examples: |
+      - why
+      - why do you need to know that
+      - why should i give you this information
+      - why are you asking?
+      - why is this needed?
+  - intent: mood_bad
+    examples: |
+      - my day was horrible
+      - I am sad
+      - I don't feel very well
+      - I am disappointed
+      - super sad
+      - I'm so sad
+      - sad
+      - very sad
+      - unhappy
+      - not good
+      - not very good
+      - extremly sad
+      - so saad
+      - so sad
+
+  - intent: goodbye
+    examples: |
+      - cu
+      - good by
+      - cee you later
+      - good night
+      - bye
+      - goodbye
+      - have a nice day
+      - see you around
+      - bye bye
+      - see you later
+
+  - intent: ask_how_i_feel
+    examples: |
+      - Ask me how I feel
+      - Do you want to know how I feel?
+      - Ask me about my feelings
+
+  - intent: confirm
+    examples: |
+      - can I confirm
+      - I want to confirm
+      - I would like to confirm that
+  - intent: thankyou
+    examples: |
+      - thank you
+      - thanks
+      - thanks a lot
+      - thank you so much!
+
+  - intent: inform_age
+    examples: |
+      - My age is [20 years](age)
+      - I am [15](age)
+      - I am [47 years](age)
+      - I am [8 years](age) old
