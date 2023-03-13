@@ -3,3 +3,5 @@ venv-rasa-devto
 models/*
 # except for .gitkeep, so that the folder itself is included
 !models/.gitkeep
+# keep secret keys out of VCS
+.env
