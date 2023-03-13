@@ -24,65 +24,64 @@ intents:
 
 responses:
   utter_greet:
-    - text: Hey! How are you?
+    - text: ¡Hola! ¿Cómo estás?
       buttons:
         - title: great
-          payload: I feel great
+          payload: Me siento genial
         - title: subscribe
-          payload: I want to subscribe
-      image: http://gph.is/1LfEFeu
+          payload: Quiero suscribirme
   utter_happy:
-    - text: Great, carry on!
+    - text: ¡Genial, continúa así!
   utter_ask_email:
-    - text: Which email would you like to use?
+    - text: ¿Qué correo electrónico te gustaría usar?
       buttons:
-        - title: Work email
+        - title: Correo del trabajo
           payload: /inform_email{{"email":"example@work.com"}}
-        - title: Personal email
+        - title: Correo personal
           payload: /inform_email{{"email":"example@home.com"}}
   utter_ask_frequency:
-    - text: How often do you want to receive emails from me?
+    - text: ¿Con qué frecuencia quieres recibir correos electrónicos?
   utter_ask_notifications:
-    - text: Do you want notifications?
+    - text: Quieres activar las notificaciones?
       buttons:
         - title: Yes
           payload: /affirm
         - title: No
           payload: /deny
   utter_ask_can_ask_age:
-    - text: Can I ask what your age is?
+    - text: ¿Puedo preguntar cuál es tu edad?
   utter_ask_age:
-    - text: What is your age?
+    - text: ¿Qué edad tienes?
   utter_subscribed:
     - text:
-        You're all set! Check your inbox at {email} to confirm your subscription.
-        You will receive emails {frequency}. Your age is {age}.
+        ¡Estás listo! Revisa tu bandeja de entrada en {email} para confirmar tu suscripción.
+        Recibirá correos electrónicos con {frequency}. Tu edad es {age}.
   utter_ask_continue:
-    - text: Sorry, I don't quite understand. Do you want to continue?
+    - text: Perdón, no lo entendí muy bien. ¿Quieres continuar?
   utter_price_for_once_a_week:
-    - text: Once a week subscription costs $5.
+    - text: La subscripción semanal cuesta $5 USD.
   utter_price_for_twice_a_week:
-    - text: Twice a week subscription costs $10.
+    - text: La subscripción de dos veces a la semana cuesta $10 USD.
   utter_explain_email:
-    - text: So that I know where to send it.
+    - text: Para así saber a donde enviralos.
   utter_explain_frequency:
-    - text: So that I know how often to send it.
+    - text: Para así saber con que frecuencia enviarlos.
   utter_ask_user_question:
-    - text: How do you feel?
+    - text: ¿Cómo te sientes?
   utter_great:
-    - text: Glad to hear that!
+    - text: ¡Me alegro de escuchar eso!
   utter_bad:
-    - text: I'm sorry to hear that.
+    - text: Lamento escuchar eso.
   utter_goodbye:
-    - text: Bye
+    - text: Adiós
   utter_ask_confirm:
-    - text: Do you really want to confirm that?
+    - text: ¿Realmente quieres confirmar esto?
   utter_confirmed:
-    - text: Confirmed.
+    - text: Confirmado.
   utter_email_back:
-    - text: Your email is {email}.
+    - text: Tu email es {email}.
   utter_age_back:
-    - text: Your age is {age}.
+    - text: Tu edad es {age}.
 
 forms:
   newsletter_form:

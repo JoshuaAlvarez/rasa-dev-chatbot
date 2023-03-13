@@ -6,11 +6,11 @@ stories:
   - story: happy path 1
     steps:
       - user: |
-          hello
+          hola
         intent: greet
       - action: utter_greet
       - user: |
-          great
+          genial
         intent: mood_great
       - action: utter_happy
 
@@ -21,16 +21,16 @@ stories:
         intent: greet
       - action: utter_greet
       - user: |
-          I want to subscribe
+          quiero suscribirme
         intent: subscribe
       - action: newsletter_form
       - active_loop: newsletter_form
       - user: |
-          my email is [example@email.com](email)
+          mi correo es [example@email.com](email)
         intent: inform_email
       - action: newsletter_form
       - user: |
-          [twice a week](frequency)
+          [dos veces a la semana](frequency)
         intent: inform_frequency
       - action: newsletter_form
       - active_loop: null
@@ -40,16 +40,16 @@ stories:
   - story: Chitchat during email
     steps:
       - user: |
-          I want to subscribe
+          quiero suscribirme
         intent: subscribe
       - action: newsletter_form
       - active_loop: newsletter_form
       - user: |
-          How's the weather?
+          Qué tal el clima?
         intent: chitchat
       - action: utter_ask_continue
       - user: |
-          Yes, I do
+          Sí, si quiero
         intent: affirm
       - action: newsletter_form
       - active_loop: null
@@ -59,20 +59,20 @@ stories:
   - story: Chitchat during frequency
     steps:
       - user: |
-          I want to subscribe
+          quiero suscribirme
         intent: subscribe
       - action: newsletter_form
       - active_loop: newsletter_form
       - user: |
-          my email is [example@email.com](email)
+          mi email es [example@email.com](email)
         intent: inform_email
       - action: newsletter_form
       - user: |
-          How's the weather?
+          Cómo está el clima?
         intent: chitchat
       - action: utter_ask_continue
       - user: |
-          Yes, I do
+          Sí quiero
         intent: affirm
       - action: newsletter_form
       - active_loop: null
@@ -83,24 +83,24 @@ stories:
     steps:
       - intent: subscribe
         user: |-
-          I want to subscribe
+          quiero suscribirme
       - action: newsletter_form
       - active_loop: newsletter_form
       - slot_was_set:
           - requested_slot: email
       - intent: chitchat
         user: |-
-          How's the weather?
+          Cómo esta el clima?
       - action: utter_ask_continue
       - intent: affirm
         user: |-
-          Yes, I do
+          Sí
       - action: newsletter_form
       - slot_was_set:
           - requested_slot: email
       - intent: inform_email
         user: |-
-          my email is [example@email.com](email)
+          mi correo es [example@email.com](email)
       - slot_was_set:
           - email: example@email.com
       - action: newsletter_form
@@ -110,17 +110,17 @@ stories:
           - requested_slot: frequency
       - intent: chitchat
         user: |-
-          I want to order a pizza
+          quiero ordenar una pizza
       - action: utter_ask_continue
       - intent: affirm
         user: |-
-          Sure
+          seguro
       - action: newsletter_form
       - slot_was_set:
           - requested_slot: frequency
       - intent: inform_frequency
         user: |-
-          [twice a week](frequency)
+          [dos veces por semana](frequency)
       - action: newsletter_form
       - slot_was_set:
           - frequency: twice a week
@@ -128,7 +128,7 @@ stories:
           - requested_slot: notifications
       - intent: affirm
         user: |-
-          yes
+          si
       - action: newsletter_form
       - slot_was_set:
           - notifications: yes

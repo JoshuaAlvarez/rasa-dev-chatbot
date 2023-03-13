@@ -6,189 +6,184 @@ nlu:
       - hey
       - hello
       - hi
-      - hello there
-      - good morning
-      - good evening
-      - moin
-      - hey there
-      - let's go
-      - hey dude
-      - goodmorning
-      - goodevening
-      - good afternoon
+      - hola
+      - buenos días
+      - buenas tardes
+      - buenas
+      - hola que tal
+      - vamos
+      - qué onda
+      - buendia
+      - buenatarde
 
   - intent: mood_great
     examples: |
-      - perfect
-      - great
-      - amazing
-      - feeling like a king
-      - wonderful
-      - I am feeling very good
-      - I am great
-      - I am amazing
-      - I am going to save the world
-      - super stoked
-      - extremely good
-      - so so perfect
-      - so good
-      - so perfect
+      - perfecto
+      - genial
+      - asombroso
+      - me siento como un rey
+      - maravilloso
+      - me siento muy bien
+      - estoy genial
+      - excelente
+      - de lujo
+      - super
+      - extremadamente bien
+      - perfecto
+      - muy bien
+      - perfectamente
 
   - intent: mood_bad
     examples: |
-      - my day was horrible
-      - I am sad
-      - I don't feel very well
-      - I am disappointed
-      - super sad
-      - I'm so sad
-      - sad
-      - very sad
-      - unhappy
-      - not good
-      - not very good
-      - extremly sad
-      - so saad
-      - so sad
+      - mi dia fue horrible
+      - estoy triste
+      - no me siento muy bien
+      - Estoy decepcionado
+      - muy triste
+      - estoy muy triste
+      - triste
+      - infeliz
+      - no muy bien
+      - mal
+      - Extremadamente triste
+      - tan triste
 
   - intent: goodbye
     examples: |
-      - cu
-      - good by
-      - cee you later
-      - good night
+      - adios
+      - adioooos
+      - nos vemos
       - bye
-      - goodbye
-      - have a nice day
-      - see you around
-      - bye bye
-      - see you later
+      - que tengas un buen día
+      - hasta luego
+      - hasta la vista
 
   - intent: ask_how_i_feel
     examples: |
-      - Ask me how I feel
-      - Do you want to know how I feel?
-      - Ask me about my feelings
+      - Pregúntame cómo me siento
+      - ¿Quieres saber cómo me siento?
+      - Pregúntame sobre mis sentimientos.
 
   - intent: subscribe
     examples: |
-      - I want to get the newsletter
-      - Can you send me the newsletter?
-      - Can you sign me up for the newsletter?
-      - I want to subscribe to a newsletter.
+      - quiero recibir el boletin
+      - ¿Puedes enviarme el boletín?
+      - ¿Puedes suscribirme al boletín?
+      - Quiero suscribirme a un boletín.
 
   - intent: inform_email
     examples: |
-      - My email is [example@example.com](email)
+      - Mi correo es [example@example.com](email)
       - [random@example.com](email)
-      - Please send it to [anything@example.com](email)
-      - Email is [something@example.com](email)
+      - Porfavor envíalo a [anything@example.com](email)
+      - El correo es [something@example.com](email)
+      - Mi email es [example@example.com](email)
+      - El email es [something@example.com](email)
 
   - intent: inform_frequency
     examples: |
-      - every week
-      - once a week
-      - twice per month
-      - as ofter as possible
-      - once a month
-      - [once a week](frequency)
-      - [once](frequency)
-      - [once per week](frequency)
-      - [twice a week](frequency)
-      - [twice]{"entity": "frequency", "value": "twice a week"}
-      - [twice per week]{"entity": "frequency", "value": "twice a week"}
+      - cada semana
+      - semanalmente
+      - una vez a la semana
+      - dos veces al mes
+      - tan seguido como sea posible
+      - una vez al mes
+      - mensualmente
+      - [una vez por semana](frequency)
+      - [una vez](frequency)
+      - [semanalmente](frequency)
+      - [dos veces a la semana](frequency)
+      - [dos veces]{"entity": "frequency", "value": "twice a week"}
 
-  - synonym: once a week
+  - synonym: una vez por semana
     examples: |
-      - once
-      - once per week
+      - una vez
+      - semanalmente
 
   - intent: chitchat
     examples: |
-      - that's not what I want to do
-      - wait stop
-      - you're no help
-      - this is no help at all
-      - how old are you
-      - I want to order a pizza
-      - tell me the weather
-      - this isn't working
-      - I already told you that
-      - don't like that
-      - I don't want to tell you that
-      - none of your business
-      - that's not right
-      - stop asking
-      - nevermind
-      - I want to do something else
-      - I changed my mind
+      - eso no es lo que quiero hacer
+      - espera para
+      - no eres de ayuda
+      - esto no es de ninguna ayuda
+      - cuántos años tienes
+      - quiero pedir una pizza
+      - dime el clima
+      - esto no funciona
+      - ya te lo dije
+      - no me gusta eso
+      - no quiero decirte eso
+      - no es asunto tuyo
+      - eso no está bien
+      - Para de preguntar
+      - no importa
+      - quiero hacer otra cosa
+      - Cambié de opinión
 
   - intent: affirm
     examples: |
       - yes
-      - indeed
-      - of course
-      - that sounds good
-      - correct
-      - sure
+      - si
+      - de hecho
+      - en efecto
+      - por supuesto
+      - eso suena bien
+      - correcto
+      - seguro
       - ok
-      - why not
-      - ok great
-      - yes I did
-      - yeah, great
-      - pretty good
-      - fine
-      - You bet
-      - I sure did
-      - more or less
+      - ok genial
+      - si, así es
+      - yeah
+      - claro
+      - seguro que si
 
   - intent: deny
     examples: |
       - no
-      - never
-      - I don't think so
-      - no way
-      - not really
-      - none
-      - absolutely not
-      - no thanks
-      - didn't do any
-      - no I didn't
-      - could have been better
-      - not great
+      - nunca
+      - no lo creo
+      - de ninguna manera
+      - no realmente
+      - ninguno
+      - absolutamente no
+      - no gracias
+      - no, no lo hice
+      - pudo haber sido mejor
+      - no muy bueno
       - nope
 
   - intent: ask_price
     examples: |
-      - how much will it be
-      - what's the price
-      - how much will it cost
-      - How much will I pay?
+      - ¿Cuánto será?
+      - ¿Cuál es el precio?
+      - Cuánto va a costar
+      - ¿Cuánto pagaré?
+      - cuanto cuesta
 
   - intent: explain
     examples: |
-      - why
-      - why do you need to know that
-      - why should i give you this information
-      - why are you asking?
-      - why is this needed?
+      - por qué
+      - ¿Por qué necesitas saber eso?
+      - ¿Por qué debería darte esta información?
+      - ¿porque lo preguntas?
+      - por qué es esto necesario
 
   - intent: confirm
     examples: |
-      - can I confirm
-      - I want to confirm
-      - I would like to confirm that
+      - puedo confirmar
+      - quiero confirmar
+      - me gustaria confirmar eso
 
   - intent: thankyou
     examples: |
-      - thank you
-      - thanks
-      - thanks a lot
-      - thank you so much!
+      - gracias
+      - muchas gracias
+      - te lo agradezco
+      - muchisimas gracias!
 
   - intent: inform_age
     examples: |
-      - My age is [20 years](age)
-      - I am [15](age)
-      - I am [47 years](age)
-      - I am [8 years](age) old
+      - My edad es [20 años](age)
+      - Tengo [15](age)
+      - Yo tengo [47 años](age)
+      - Tengo [8 años](age) de edad
