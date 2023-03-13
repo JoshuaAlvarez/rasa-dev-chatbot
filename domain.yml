@@ -5,13 +5,13 @@ session_config:
   carry_over_slots_to_new_session: false
 
 intents:
-  - greet
-  - mood_great
-  - subscribe
-  - inform_email
   - inform_frequency
   - chitchat
+  - subscribe
+  - inform_email
   - affirm
+  - greet
+  - mood_great
   - deny
   - ask_price
   - explain
@@ -22,41 +22,48 @@ intents:
   - thankyou
   - inform_age
 
+entities:
+  - email
+  - age
+
+slots:
+  email:
+    type: text
+    influence_conversation: false
+  frequency:
+    type: categorical
+    values:
+      - once a week
+      - twice a week
+    influence_conversation: true
+  notification:
+    type: bool
+    influence_conversation: false
+  requested_slot:
+    type: categorical
+    influence_conversation: true
+    values:
+      - email
+      - frequency
+  age:
+    type: text
+    influence_conversation: false
+
 responses:
   utter_greet:
     - text: Hey! How are you?
-      buttons:
-        - title: great
-          payload: I feel great
-        - title: subscribe
-          payload: I want to subscribe
-      image: http://gph.is/1LfEFeu
+    - text: Hi, how's it going?
   utter_happy:
     - text: Great, carry on!
+    - text: Awesome!
   utter_ask_email:
-    - text: Which email would you like to use?
-      buttons:
-        - title: Work email
-          payload: /inform_email{{"email":"example@work.com"}}
-        - title: Personal email
-          payload: /inform_email{{"email":"example@home.com"}}
+    - text: What is your email address?
   utter_ask_frequency:
     - text: How often do you want to receive emails from me?
-  utter_ask_notifications:
+  utter_ask_notification:
     - text: Do you want notifications?
-      buttons:
-        - title: Yes
-          payload: /affirm
-        - title: No
-          payload: /deny
-  utter_ask_can_ask_age:
-    - text: Can I ask what your age is?
-  utter_ask_age:
-    - text: What is your age?
   utter_subscribed:
-    - text:
-        You're all set! Check your inbox at {email} to confirm your subscription.
-        You will receive emails {frequency}. Your age is {age}.
+    - text: You're all set! Check your inbox at {email} to confirm your subscription. You will receive emails {frequency}.
   utter_ask_continue:
     - text: Sorry, I don't quite understand. Do you want to continue?
   utter_price_for_once_a_week:
@@ -79,68 +86,26 @@ responses:
     - text: Do you really want to confirm that?
   utter_confirmed:
     - text: Confirmed.
-  utter_email_back:
-    - text: Your email is {email}.
   utter_age_back:
     - text: Your age is {age}.
+  utter_email_back:
+    - text: Your email is {email}.
+
+actions:
+  - utter_ask_continue
+  - utter_subscribed
 
 forms:
   newsletter_form:
-    email:
-      - type: from_entity
-        entity: email
-    frequency:
-      - type: from_entity
-        entity: frequency
-    notifications:
-      - type: from_intent
-        intent: affirm
-        value: true
-      - type: from_intent
-        intent: deny
-        value: false
-    can_ask_age:
-      - type: from_intent
-        intent: affirm
-        value: true
-      - type: from_intent
-        intent: deny
-        value: false
-    age:
-      - type: from_entity
-        entity: age
-
-slots:
-  email:
-    type: text
-    influence_conversation: false
-  frequency:
-    type: categorical
-    values:
-      - once a week
-      - twice a week
-    influence_conversation: true
-  notifications:
-    type: bool
-    influence_conversation: false
-  requested_slot:
-    type: categorical
-    influence_conversation: true
-    values:
-      - email
-      - frequency
-  can_ask_age:
-    type: bool
-    influence_conversation: false
-  age:
-    type: text
-    influence_conversation: false
-
-entities:
-  - email
-  - age
-  - frequency
-
-actions:
-  - validate_newsletter_form
-  - submit_newsletter_form
+    required_slots:
+      email:
+        - type: from_entity
+          entity: email
+      frequency:
+        - type: from_text
+          intent: inform_frequency
+      notification:
+        - type: from_text
+          intent:
+            - affirm
+            - deny

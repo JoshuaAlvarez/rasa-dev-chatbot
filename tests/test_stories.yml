@@ -30,12 +30,11 @@ stories:
         intent: inform_email
       - action: newsletter_form
       - user: |
-          [twice a week](frequency)
+          twice a week
         intent: inform_frequency
       - action: newsletter_form
       - active_loop: null
       - action: utter_subscribed
-      - action: submit_newsletter_form
 
   - story: Chitchat during email
     steps:
@@ -54,7 +53,6 @@ stories:
       - action: newsletter_form
       - active_loop: null
       - action: utter_subscribed
-      - action: submit_newsletter_form
 
   - story: Chitchat during frequency
     steps:
@@ -77,7 +75,6 @@ stories:
       - action: newsletter_form
       - active_loop: null
       - action: utter_subscribed
-      - action: submit_newsletter_form
 
   - story: Newsletter form two interruptions
     steps:
@@ -120,20 +117,19 @@ stories:
           - requested_slot: frequency
       - intent: inform_frequency
         user: |-
-          [twice a week](frequency)
+          twice a week
       - action: newsletter_form
       - slot_was_set:
           - frequency: twice a week
       - slot_was_set:
-          - requested_slot: notifications
+          - requested_slot: notification
       - intent: affirm
         user: |-
           yes
       - action: newsletter_form
       - slot_was_set:
-          - notifications: yes
+          - notification: yes
       - slot_was_set:
           - requested_slot: null
       - active_loop: null
       - action: utter_subscribed
-      - action: submit_newsletter_form
