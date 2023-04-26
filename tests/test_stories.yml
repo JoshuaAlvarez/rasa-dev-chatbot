@@ -21,27 +21,27 @@ stories:
         intent: greet
       - action: utter_greet
       - user: |
-          quiero suscribirme
-        intent: subscribe
+          me gusta este sitio
+        intent: survey
       - action: newsletter_form
       - active_loop: newsletter_form
       - user: |
-          mi correo es [example@email.com](email)
-        intent: inform_email
+          Mi ocupación es [Estudiante](occupation)
+        intent: inform_occupation
       - action: newsletter_form
       - user: |
           [dos veces a la semana](frequency)
         intent: inform_frequency
       - action: newsletter_form
       - active_loop: null
-      - action: utter_subscribed
+      - action: utter_ask_survey
       - action: submit_newsletter_form
 
-  - story: Chitchat during email
+  - story: Chitchat during occupation
     steps:
       - user: |
           quiero suscribirme
-        intent: subscribe
+        intent: survey
       - action: newsletter_form
       - active_loop: newsletter_form
       - user: |
@@ -53,19 +53,19 @@ stories:
         intent: affirm
       - action: newsletter_form
       - active_loop: null
-      - action: utter_subscribed
+      - action: utter_survey_done
       - action: submit_newsletter_form
 
   - story: Chitchat during frequency
     steps:
       - user: |
           quiero suscribirme
-        intent: subscribe
+        intent: survey
       - action: newsletter_form
       - active_loop: newsletter_form
       - user: |
-          mi email es [example@email.com](email)
-        intent: inform_email
+          mi ocupacion es [Ocupado](occupation)
+        intent: inform_occupation
       - action: newsletter_form
       - user: |
           Cómo está el clima?
@@ -76,18 +76,18 @@ stories:
         intent: affirm
       - action: newsletter_form
       - active_loop: null
-      - action: utter_subscribed
+      - action: utter_survey_done
       - action: submit_newsletter_form
 
   - story: Newsletter form two interruptions
     steps:
-      - intent: subscribe
+      - intent: survey
         user: |-
           quiero suscribirme
       - action: newsletter_form
       - active_loop: newsletter_form
       - slot_was_set:
-          - requested_slot: email
+          - requested_slot: occupation
       - intent: chitchat
         user: |-
           Cómo esta el clima?
@@ -97,15 +97,15 @@ stories:
           Sí
       - action: newsletter_form
       - slot_was_set:
-          - requested_slot: email
-      - intent: inform_email
+          - requested_slot: occupation
+      - intent: inform_occupation
         user: |-
-          mi correo es [example@email.com](email)
+          mi ocupación es [ingeniero](occupation)
       - slot_was_set:
-          - email: example@email.com
+          - occupation: ingeniero
       - action: newsletter_form
       - slot_was_set:
-          - email: example@email.com
+          - occupation: ingeniero
       - slot_was_set:
           - requested_slot: frequency
       - intent: chitchat
@@ -135,5 +135,5 @@ stories:
       - slot_was_set:
           - requested_slot: null
       - active_loop: null
-      - action: utter_subscribed
+      - action: utter_ask_survey
       - action: submit_newsletter_form

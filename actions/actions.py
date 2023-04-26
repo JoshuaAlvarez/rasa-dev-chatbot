@@ -1,12 +1,20 @@
-from typing import Text, List, Optional, Dict, Any
-from rasa_sdk.forms import FormValidationAction
-from rasa_sdk.executor import CollectingDispatcher
-from rasa_sdk import Tracker, Action
-from dotenv import load_dotenv
-import os
-import requests
 import json
+import os
+import typing
 import uuid
+from typing import Any, Dict, List, Optional, Text
+
+import requests
+from dotenv import load_dotenv
+from rasa_sdk import Action, Tracker
+from rasa_sdk.events import ConversationPaused, UserUtteranceReverted
+from rasa_sdk.executor import CollectingDispatcher
+from rasa_sdk.forms import FormValidationAction
+
+if typing.TYPE_CHECKING:  # pragma: no cover
+    from rasa_sdk import Tracker
+    from rasa_sdk.executor import CollectingDispatcher
+    from rasa_sdk.types import DomainDict
 
 load_dotenv()
 
@@ -23,7 +31,7 @@ base_id = get_env_var("BASE_ID")
 table_name = get_env_var("TABLE_NAME")
 
 
-def create_newsletter_record(email, frequency, notifications, can_ask_age, age):
+def create_newsletter_record(occupation, frequency, notifications, recommend, satisfaction):
     request_url = f"https://api.airtable.com/v0/{base_id}/{table_name}"
 
     headers = {
@@ -35,11 +43,11 @@ def create_newsletter_record(email, frequency, notifications, can_ask_age, age):
     data = {
         "fields": {
             "Id": str(uuid.uuid4()),
-            "Email": email,
+            "Occupation": occupation,
             "Frequency": frequency,
-            "Notifications?": notifications,
-            "Can ask age?": can_ask_age,
-            "Age": age,
+            "Found succeed?": notifications,
+            "Would recommend?": recommend,
+            "Satisfaction": satisfaction,
         }
     }
 
@@ -70,8 +78,8 @@ class ValidateNewsletterForm(FormValidationAction):
             tracker: "Tracker",
             domain: "DomainDict",
     ) -> Optional[List[Text]]:
-        if not tracker.get_slot("can_ask_age"):
-            slots_mapped_in_domain.remove("age")
+        if not tracker.get_slot("recommend"):
+            slots_mapped_in_domain.remove("satisfaction")
 
         return slots_mapped_in_domain
 
@@ -84,17 +92,32 @@ class SubmitNewsletterForm(Action):
     async def run(
             self, dispatcher, tracker: Tracker, domain: Dict[Text, Any],
     ) -> List[Dict[Text, Any]]:
-        email = tracker.get_slot("email")
+        occupation = tracker.get_slot("occupation")
         frequency = tracker.get_slot("frequency")
         notifications = tracker.get_slot("notifications")
-        can_ask_age = tracker.get_slot("can_ask_age")
-        age = tracker.get_slot("age")
+        recommend = tracker.get_slot("recommend")
+        satisfaction = tracker.get_slot("satisfaction")
 
-        response = create_newsletter_record(email, frequency, notifications, can_ask_age, age)
+        response = create_newsletter_record(
+            occupation, frequency, notifications, recommend, satisfaction)
 
-        dispatcher.utter_message("Thanks, your answers have been recorded!")
+        dispatcher.utter_message(
+            "¡Gracias, tus respuestas han sido registradas!")
 
         return []
+
+    # class ActionDefaultFallback(Action):
+    #     def name(self) -> Text:
+    #         return "action_default_fallback"
+
+    #     def run(self, dispatcher, tracker, domain):
+    #         # output a message saying that the bot did not understood the message
+
+    #         message = "Lo siento, no lo entendí. ¿Me lo puedes aclarar?"
+    #         dispatcher.utter_message(text=message)
+    #         # pause tracker
+    #         # undo last user interaction
+    #         return [ConversationPaused(), UserUtteranceReverted()]
 
 # class ActionSayStuff(Action):
 #     def name(self) -> Text:

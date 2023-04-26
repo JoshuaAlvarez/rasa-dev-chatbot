@@ -1,17 +1,17 @@
 version: "2.0"
-
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: false
-
 intents:
+  - stop
+  - inform_occupation
+  - inform_satisfaction
+  - inform_frequency
+  - survey
+  - affirm
   - greet
   - mood_great
-  - subscribe
-  - inform_email
-  - inform_frequency
   - chitchat
-  - affirm
   - deny
   - ask_price
   - explain
@@ -20,52 +20,83 @@ intents:
   - ask_how_i_feel
   - confirm
   - thankyou
-  - inform_age
+  - ask_encodice
+  - suggest_topic
+  - ask_info
+  - inform_interest
+  - sign_up
+entities:
+  - frequency
+  - occupation
+  - satisfaction
+slots:
+  occupation:
+    type: text
+    influence_conversation: false
+  frequency:
+    type: text
+    influence_conversation: true
+  notifications:
+    type: bool
+    influence_conversation: false
+  requested_slot:
+    type: categorical
+    influence_conversation: true
+    values:
+      - occupation
+      - frequency
+  recommend:
+    type: bool
+    influence_conversation: false
+  satisfaction:
+    type: text
+    influence_conversation: false
+  interest:
+    type: categorical
+    influence_conversation: true
+    values:
+      - Energía renovable
+      - Almacenamiento de energía
+      - Sistemas de energía
 
 responses:
   utter_greet:
-    - text: ¡Hola! ¿Cómo estás?
-      buttons:
-        - title: great
-          payload: Me siento genial
-        - title: subscribe
-          payload: Quiero suscribirme
+    - text: ¡Hola! ¿En qué puedo ayudarte?
+    - text: ¡Bienvenido! ¿Cómo puedo ayudarte?
   utter_happy:
     - text: ¡Genial, continúa así!
-  utter_ask_email:
-    - text: ¿Qué correo electrónico te gustaría usar?
-      buttons:
-        - title: Correo del trabajo
-          payload: /inform_email{{"email":"example@work.com"}}
-        - title: Correo personal
-          payload: /inform_email{{"email":"example@home.com"}}
+  utter_ask_occupation:
+    - text: ¿Cuál es tu ocupación?
   utter_ask_frequency:
-    - text: ¿Con qué frecuencia quieres recibir correos electrónicos?
+    - text: ¿Con qué frecuencia visitas nuestro sitio web?
   utter_ask_notifications:
-    - text: Quieres activar las notificaciones?
+    - text: ¿Encontraste la información que buscabas en el sitio web?
       buttons:
-        - title: Yes
+        - title: Si
           payload: /affirm
         - title: No
           payload: /deny
-  utter_ask_can_ask_age:
-    - text: ¿Puedo preguntar cuál es tu edad?
-  utter_ask_age:
-    - text: ¿Qué edad tienes?
-  utter_subscribed:
-    - text:
-        ¡Estás listo! Revisa tu bandeja de entrada en {email} para confirmar tu suscripción.
-        Recibirá correos electrónicos con {frequency}. Tu edad es {age}.
+  utter_ask_recommend:
+    - text: ¿Recomendarías este sitio web a otras personas?
+      buttons:
+        - title: Si
+          payload: /affirm
+        - title: No
+          payload: /deny
+  utter_ask_satisfaction:
+    - text: ¿Qué tan satisfecho estuvo con el diseño y la presentación del sitio web?
+  utter_survey_done:
+    - text: ¡Es todo! Muchas gracias por tu opinión.
   utter_ask_continue:
     - text: Perdón, no lo entendí muy bien. ¿Quieres continuar?
   utter_price_for_once_a_week:
-    - text: La subscripción semanal cuesta $5 USD.
+    - text: Usar Encodice no tiene costo
   utter_price_for_twice_a_week:
-    - text: La subscripción de dos veces a la semana cuesta $10 USD.
-  utter_explain_email:
-    - text: Para así saber a donde enviralos.
+    - text: Encodice es gratuito
+  utter_explain_occupation:
+    - text: Tus respuestas nos ayudan a mejorar el contenido de Encodice.
   utter_explain_frequency:
-    - text: Para así saber con que frecuencia enviarlos.
+    - text: Tus respuestas nos ayudan a mejorar el sitio
   utter_ask_user_question:
     - text: ¿Cómo te sientes?
   utter_great:
@@ -78,68 +109,65 @@ responses:
     - text: ¿Realmente quieres confirmar esto?
   utter_confirmed:
     - text: Confirmado.
-  utter_email_back:
-    - text: Tu email es {email}.
-  utter_age_back:
-    - text: Tu edad es {age}.
-
+  utter_encodice:
+    - text: Encodice es un sitio web en el que encontrarás grupos de temas relacionados a la ingeniería sustentable y una comunidad de usuarios para compartir publicaciones y comentarios.
+    - text: El objetivo de Encodice es facilitar el aprendizaje en el campo de la ingeniería ecológica acercando a expertos y principiantes a una comunidad activa.
+  utter_ask_interest:
+    - text: Claro, ¿cuáles son tus intereses?
+        -> Energía renovable
+        -> Almacenamiento de energía
+        -> Sistemas de energía
+  utter_topics:
+    - condition:
+        - type: slot
+          name: interest
+          value: "Energía renovable"
+      text: "Aquí están algunos temas sobre <b>Energía renovable<b>: <a href='https://phenomenal-taffy-a2b83e.netlify.app/tema/Fotovoltaica'>Fotovoltaica y Energía Solar</a>, <a href='https://phenomenal-taffy-a2b83e.netlify.app/tema/Energía_Eólica'>Energía eólica</a>, <a href='https://phenomenal-taffy-a2b83e.netlify.app/tema/EnergíaHidroeléctrica'>Energía hidroeléctrica</a>, <a href='https://phenomenal-taffy-a2b83e.netlify.app/tema/Energía_Geotérmica'>Energía geotérmica</a>, <a href='https://phenomenal-taffy-a2b83e.netlify.app/tema/Bioenergía'>Bioenergía</a>"
+    - condition:
+        - type: slot
+          name: interest
+          value: "Almacenamiento de energía"
+      text: "Aquí está un tema sobre <b>Almacenamiento de energía<b>: <a href='https://phenomenal-taffy-a2b83e.netlify.app/tema/Baterías'>Baterías</a>, <a href='https://phenomenal-taffy-a2b83e.netlify.app/tema/Hidrógeno'>Hidrógeno</a>"
+    - condition:
+        - type: slot
+          name: interest
+          value: "Sistemas de energía"
+      text: "Aquí están algunos temas sobre <b>Sistemas de energía<b>: <a href='https://phenomenal-taffy-a2b83e.netlify.app/tema/ModeladoYOptimización'>Modelado y Optimización Energética</a>, <a href='https://phenomenal-taffy-a2b83e.netlify.app/tema/Monitoreo_de_Energía'>Monitoreo y Control de Energía</a>, <a href='https://phenomenal-taffy-a2b83e.netlify.app/tema/Distribución_Energía'>Distribución de Energía y Redes</a>, <a href='https://phenomenal-taffy-a2b83e.netlify.app/tema/Sistemas_Energéticos'>Conjuntos de datos sobre sistemas energéticos</a>"
+  utter_ask_survey:
+    - text: Gracias! Tu opinión es importante para nosotros. ¿Nos ayudarías respondiendo una breve encuesta?
+  utter_info:
+    - text: ¿Sobre qué necesitas información?
+    - text: Puedo darte información. ¿Qué es lo que buscas?
+  utter_sign_up:
+    - text: Puedes crear una cuenta dando click al botón "Regístrate" en la esquina superior derecha.
+actions:
+  - submit_newsletter_form
+  - utter_ask_survey
+  - utter_survey_done
+  - validate_newsletter_form
 forms:
   newsletter_form:
-    email:
-      - type: from_entity
-        entity: email
-    frequency:
-      - type: from_entity
-        entity: frequency
-    notifications:
-      - type: from_intent
-        intent: affirm
-        value: true
-      - type: from_intent
-        intent: deny
-        value: false
-    can_ask_age:
-      - type: from_intent
-        intent: affirm
-        value: true
-      - type: from_intent
-        intent: deny
-        value: false
-    age:
-      - type: from_entity
-        entity: age
-
-slots:
-  email:
-    type: text
-    influence_conversation: false
-  frequency:
-    type: categorical
-    values:
-      - once a week
-      - twice a week
-    influence_conversation: true
-  notifications:
-    type: bool
-    influence_conversation: false
-  requested_slot:
-    type: categorical
-    influence_conversation: true
-    values:
-      - email
-      - frequency
-  can_ask_age:
-    type: bool
-    influence_conversation: false
-  age:
-    type: text
-    influence_conversation: false
-
-entities:
-  - email
-  - age
-  - frequency
-
-actions:
-  - validate_newsletter_form
-  - submit_newsletter_form
+    required_slots:
+      occupation:
+        - type: from_entity
+          entity: occupation
+      frequency:
+        - type: from_entity
+          entity: frequency
+      notifications:
+        - type: from_intent
+          intent: affirm
+          value: true
+        - type: from_intent
+          intent: deny
+          value: false
+      recommend:
+        - type: from_intent
+          intent: affirm
+          value: true
+        - type: from_intent
+          intent: deny
+          value: false
+      satisfaction:
+        - type: from_entity
+          entity: satisfaction

@@ -1,5 +1,5 @@
+---
 version: "2.0"
-
 stories:
   - story: happy path
     steps:
@@ -7,39 +7,41 @@ stories:
       - action: utter_greet
       - intent: mood_great
       - action: utter_happy
-
   - story: newsletter form continue
     steps:
-      - intent: subscribe
+      - intent: survey
+      - action: utter_ask_survey
       - action: newsletter_form
       - active_loop: newsletter_form
       - intent: chitchat
       - action: utter_ask_continue
       - intent: affirm
       - action: newsletter_form
-
   - story: newsletter form stop
     steps:
-      - intent: subscribe
+      - intent: survey
+      - action: utter_ask_survey
       - action: newsletter_form
       - active_loop: newsletter_form
       - intent: chitchat
       - action: utter_ask_continue
       - intent: deny
       - action: action_deactivate_loop
+      - slot_was_set:
+          - requested_slot: None
       - active_loop: null
-
   - story: interactive_story_1
     steps:
-      - intent: subscribe
+      - intent: survey
+      - action: utter_ask_survey
       - action: newsletter_form
       - active_loop: newsletter_form
       - slot_was_set:
-          - requested_slot: email
+          - requested_slot: occupation
       - slot_was_set:
-          - email: developer@email.com
+          - occupation: Desarrollador
       - slot_was_set:
-          - email: developer@email.com
+          - occupation: Desarrollador
       - slot_was_set:
           - requested_slot: frequency
       - intent: chitchat
@@ -53,22 +55,22 @@ stories:
       - slot_was_set:
           - requested_slot: null
       - active_loop: null
-      - action: utter_subscribed
+      - action: utter_survey_done
       - action: submit_newsletter_form
-
   - story: interactive_story_2
     steps:
-      - intent: subscribe
+      - intent: survey
+      - action: utter_ask_survey
       - action: newsletter_form
       - active_loop: newsletter_form
       - slot_was_set:
-          - requested_slot: email
+          - requested_slot: occupation
       - intent: chitchat
       - action: utter_ask_continue
       - intent: affirm
       - action: newsletter_form
       - slot_was_set:
-          - requested_slot: email
+          - requested_slot: occupation
       - slot_was_set:
           - requested_slot: frequency
       - intent: chitchat
@@ -77,98 +79,72 @@ stories:
       - action: newsletter_form
       - slot_was_set:
           - requested_slot: frequency
+      - action: newsletter_form
       - active_loop: null
-      - action: utter_subscribed
+      - action: utter_survey_done
       - action: submit_newsletter_form
-
-  - story: once a week
+  - story: explain occupation
     steps:
-      - intent: subscribe
+      - intent: survey
+      - action: utter_ask_survey
       - action: newsletter_form
       - active_loop: newsletter_form
       - slot_was_set:
-          - frequency: once a week
-      - intent: ask_price
-      - action: utter_price_for_once_a_week
-      - action: newsletter_form
-
-  - story: twice a week
-    steps:
-      - intent: subscribe
-      - action: newsletter_form
-      - active_loop: newsletter_form
-      - slot_was_set:
-          - frequency: twice a week
-      - intent: ask_price
-      - action: utter_price_for_twice_a_week
-      - action: newsletter_form
-
-  - story: explain email
-    steps:
-      - intent: subscribe
-      - action: newsletter_form
-      - active_loop: newsletter_form
-      - slot_was_set:
-          - requested_slot: email
+          - requested_slot: occupation
       - intent: explain
-      - action: utter_explain_email
+      - action: utter_explain_occupation
       - action: newsletter_form
-
   - story: explain frequency
     steps:
-      - intent: subscribe
+      - intent: survey
+      - action: utter_ask_survey
       - action: newsletter_form
       - active_loop: newsletter_form
       - slot_was_set:
-          - requested_slot: email
+          - requested_slot: occupation
       - slot_was_set:
           - requested_slot: frequency
       - intent: explain
       - action: utter_explain_frequency
       - action: newsletter_form
-
-  - story: explain both email and frequency
+  - story: explain both occupation and frequency
     steps:
-      - intent: subscribe
+      - intent: survey
+      - action: utter_ask_survey
       - action: newsletter_form
       - active_loop: newsletter_form
       - slot_was_set:
-          - requested_slot: email
+          - requested_slot: occupation
       - intent: explain
-      - action: utter_explain_email
+      - action: utter_explain_occupation
       - action: newsletter_form
       - slot_was_set:
           - requested_slot: frequency
       - intent: explain
       - action: utter_explain_frequency
       - action: newsletter_form
-
   - story: beginning of flow
     steps:
       - intent: ask_how_i_feel
       - action: utter_ask_user_question
       - checkpoint: check_asked_question
-
   - story: handle user affirm
     steps:
       - checkpoint: check_asked_question
       - intent: mood_great
       - action: utter_great
       - checkpoint: check_flow_finished
-
   - story: handle user deny
     steps:
       - checkpoint: check_asked_question
       - intent: mood_bad
       - action: utter_bad
       - checkpoint: check_flow_finished
-
   - story: finish flow
     steps:
       - checkpoint: check_flow_finished
       - intent: goodbye
       - action: utter_goodbye
-
   - story: confirm by affirm or thankyou
     steps:
       - intent: confirm
@@ -177,13 +153,47 @@ stories:
           - intent: affirm
           - intent: thankyou
       - action: utter_confirmed
-
-  - story: tell age
+  - story: interactive_story_3
     steps:
-      - intent: inform_age
-      - action: utter_age_back
-
-  - story: tell email
+      - intent: survey
+      - action: utter_ask_survey
+      - action: newsletter_form
+      - active_loop: newsletter_form
+      - slot_was_set:
+          - requested_slot: occupation
+      - slot_was_set:
+          - occupation: estudiante
+      - slot_was_set:
+          - occupation: estudiante
+      - slot_was_set:
+          - requested_slot: frequency
+      - slot_was_set:
+          - frequency: una vez a la semana
+      - slot_was_set:
+          - frequency: una vez a la semana
+      - slot_was_set:
+          - requested_slot: notifications
+      - slot_was_set:
+          - notifications: true
+      - slot_was_set:
+          - requested_slot: recommend
+      - slot_was_set:
+          - recommend: true
+      - slot_was_set:
+          - requested_slot: satisfaction
+      - slot_was_set:
+          - satisfaction: mas o menos
+      - slot_was_set:
+          - satisfaction: mas o menos
+      - slot_was_set:
+          - requested_slot: null
+      - active_loop: null
+      - action: utter_survey_done
+      - action: submit_newsletter_form
+      - intent: stop
+  - story: suggest topic
     steps:
-      - intent: inform_email
-      - action: utter_email_back
+      - intent: suggest_topic
+      - action: utter_ask_interest
+      - intent: inform_interest
+      - action: utter_topics

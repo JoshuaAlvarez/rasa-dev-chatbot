@@ -1,31 +1,33 @@
+---
 version: "2.0"
-
 rules:
-  - rule: activate subscribe form
+  - rule: activate survey form
     steps:
-      - intent: subscribe
+      - intent: survey
+      - action: utter_ask_survey
       - action: newsletter_form
       - active_loop: newsletter_form
-
   - rule: submit form
     condition:
       - active_loop: newsletter_form
     steps:
       - action: newsletter_form
       - active_loop: null
-      - action: utter_subscribed
+      - action: utter_survey_done
       - action: submit_newsletter_form
-
-  - rule: once a week
+  - rule: ask price
     steps:
-      - slot_was_set:
-          - frequency: once a week
       - intent: ask_price
       - action: utter_price_for_once_a_week
-
-  - rule: twice a week
+  - rule: topic suggestion
     steps:
-      - slot_was_set:
-          - frequency: twice a week
-      - intent: ask_price
-      - action: utter_price_for_twice_a_week
+      - intent: suggest_topic
+      - action: utter_ask_interest
+  - rule: encodice info
+    steps:
+      - intent: ask_encodice
+      - action: utter_encodice
+  - rule: info
+    steps:
+      - intent: ask_info
+      - action: utter_info

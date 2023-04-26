@@ -1,5 +1,5 @@
+---
 version: "2.0"
-
 nlu:
   - intent: greet
     examples: |
@@ -15,7 +15,6 @@ nlu:
       - qué onda
       - buendia
       - buenatarde
-
   - intent: mood_great
     examples: |
       - perfecto
@@ -29,10 +28,8 @@ nlu:
       - de lujo
       - super
       - extremadamente bien
-      - perfecto
       - muy bien
       - perfectamente
-
   - intent: mood_bad
     examples: |
       - mi dia fue horrible
@@ -47,7 +44,6 @@ nlu:
       - mal
       - Extremadamente triste
       - tan triste
-
   - intent: goodbye
     examples: |
       - adios
@@ -57,49 +53,47 @@ nlu:
       - que tengas un buen día
       - hasta luego
       - hasta la vista
-
   - intent: ask_how_i_feel
     examples: |
       - Pregúntame cómo me siento
       - ¿Quieres saber cómo me siento?
       - Pregúntame sobre mis sentimientos.
-
-  - intent: subscribe
+  - intent: survey
     examples: |
-      - quiero recibir el boletin
-      - ¿Puedes enviarme el boletín?
-      - ¿Puedes suscribirme al boletín?
-      - Quiero suscribirme a un boletín.
-
-  - intent: inform_email
+      - Me gusta este sitio
+      - Me agrada esta página web
+      - Me ha encantado su plataforma
+      - Esta página es genial
+      - me gusta este sitio
+  - intent: inform_occupation
     examples: |
-      - Mi correo es [example@example.com](email)
-      - [random@example.com](email)
-      - Porfavor envíalo a [anything@example.com](email)
-      - El correo es [something@example.com](email)
-      - Mi email es [example@example.com](email)
-      - El email es [something@example.com](email)
-
+      - Mi ocupación es [maestro](occupation)
+      - [Estudiante](occupation)
+      - Yo soy [investigador](occupation)
+      - Yo soy [ingeniero](occupation)
+      - Mi trabajo es [profesor](occupation)
+      - Mi puesto es [profesor investigador](occupation)
+      - El trabajo que hago es [científico](occupation)
+      - [estudiante](occupation)
   - intent: inform_frequency
     examples: |
-      - cada semana
-      - semanalmente
-      - una vez a la semana
-      - dos veces al mes
-      - tan seguido como sea posible
-      - una vez al mes
-      - mensualmente
+      - [cada semana](frequency)
+      - [semanalmente](frequency)
+      - [una vez a la semana](frequency)
+      - [dos veces al mes](frequency)
+      - [tan seguido como sea posible](frequency)
+      - [una vez al mes](frequency)
+      - [mensualmente](frequency)
+      - [diariamente](frequency)
+      - [todos los días](frequency)
       - [una vez por semana](frequency)
       - [una vez](frequency)
-      - [semanalmente](frequency)
       - [dos veces a la semana](frequency)
       - [dos veces]{"entity": "frequency", "value": "twice a week"}
-
-  - synonym: una vez por semana
-    examples: |
-      - una vez
-      - semanalmente
-
+      - [siempre](frequency)
+      - [nunca](frequency)
+      - [es la primera vez](frequency)
+      - [una vez a la semana](frequency)
   - intent: chitchat
     examples: |
       - eso no es lo que quiero hacer
@@ -109,6 +103,7 @@ nlu:
       - cuántos años tienes
       - quiero pedir una pizza
       - dime el clima
+      - cómo está el clima?
       - esto no funciona
       - ya te lo dije
       - no me gusta eso
@@ -119,7 +114,6 @@ nlu:
       - no importa
       - quiero hacer otra cosa
       - Cambié de opinión
-
   - intent: affirm
     examples: |
       - yes
@@ -136,7 +130,7 @@ nlu:
       - yeah
       - claro
       - seguro que si
-
+      - afirmativo
   - intent: deny
     examples: |
       - no
@@ -151,7 +145,7 @@ nlu:
       - pudo haber sido mejor
       - no muy bueno
       - nope
-
+      - negativo
   - intent: ask_price
     examples: |
       - ¿Cuánto será?
@@ -159,31 +153,69 @@ nlu:
       - Cuánto va a costar
       - ¿Cuánto pagaré?
       - cuanto cuesta
-
+      - ¿Qué costo tiene?
   - intent: explain
     examples: |
       - por qué
       - ¿Por qué necesitas saber eso?
-      - ¿Por qué debería darte esta información?
+      - ¿Por qué debería decirte esto?
       - ¿porque lo preguntas?
       - por qué es esto necesario
-
   - intent: confirm
     examples: |
       - puedo confirmar
       - quiero confirmar
       - me gustaria confirmar eso
-
   - intent: thankyou
     examples: |
       - gracias
       - muchas gracias
       - te lo agradezco
       - muchisimas gracias!
-
-  - intent: inform_age
+  - intent: ask_encodice
     examples: |
-      - My edad es [20 años](age)
-      - Tengo [15](age)
-      - Yo tengo [47 años](age)
-      - Tengo [8 años](age) de edad
+      - qué es encodice?
+      - encodice
+      - dame información de encodice
+      - qué es este sitio?
+      - qué es esta página?
+      - acerca de esta página
+      - qué es esto?
+  - intent: ask_info
+    examples: |
+      - quiero información
+      - info
+      - INFOR
+      - ayuda
+      - puedes darme información
+      - ayuda
+  - intent: inform_satisfaction
+    examples: |
+      - [muy satisfecho](satisfaction)
+      - [poco satisfecho](satisfaction)
+      - [mas o menos satisfecho](satisfaction)
+      - [mas o menos](satisfaction)
+  - synonym: twice a week
+    examples: |
+      - dos veces
+  - synonym: una vez por semana
+    examples: |
+      - una vez
+      - semanalmente
+  - intent: suggest_topic
+    examples: |
+      - podrías recomendarme algún tema?
+      - ¿Podrías sugerirme algún tema?
+      - ¿Qué tema me sugieres?
+      - recomiendame un tema
+      - recomienda un subtema
+  - intent: inform_interest
+    examples: |
+      - [Energía renovable](interest)
+      - [Almacenamiento de energía](interest)
+      - [Sistemas de energía](interest)
+  - intent: sign_up
+    examples: |
+      - como suscribirme?
+      - como crear una cuenta?
+      - ¿Cómo me suscribo?
