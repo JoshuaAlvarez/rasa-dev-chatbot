@@ -94,7 +94,7 @@ stories:
       - intent: explain
       - action: utter_explain_occupation
       - action: newsletter_form
-  - story: explain frequency
+  - story: explain_frequency
     steps:
       - intent: survey
       - action: utter_ask_survey
@@ -145,13 +145,13 @@ stories:
       - checkpoint: check_flow_finished
       - intent: goodbye
       - action: utter_goodbye
-  - story: confirm by affirm or thankyou
+  - story: confirm by affirm
     steps:
       - intent: confirm
       - action: utter_ask_confirm
       - or:
           - intent: affirm
-          - intent: thankyou
+        #   - intent: thankyou
       - action: utter_confirmed
   - story: interactive_story_3
     steps:
@@ -191,9 +191,69 @@ stories:
       - action: utter_survey_done
       - action: submit_newsletter_form
       - intent: stop
-  - story: suggest topic
+  - story: suggest_topic
     steps:
       - intent: suggest_topic
       - action: utter_ask_interest
       - intent: inform_interest
       - action: utter_topics
+    #   que es la ingeniería sustentable
+  - story: information_engineering
+    steps:
+      - intent: ask_engineering
+      - action: utter_engineering
+    #   como me registro?
+  - story: information_register
+    steps:
+      - intent: sign_up
+      - action: utter_sign_up
+    #   user asks for trending topics and bot must answer with a url link
+  - story: trending_topics
+    steps:
+      - intent: ask_trending_topics
+      - action: utter_trending_topics
+    #   user wants to colaborate in a project and the bot answers with several links
+  - story: collaborate project
+    steps:
+      - intent: ask_collaborate
+      - action: utter_collaborate
+    #   user wants to learn
+  - story: information_learning
+    steps:
+      - intent: ask_learning
+      - action: utter_learning
+    #   website usage instructions
+  - story: site_usage
+    steps:
+      - intent: ask_site_usage
+      - action: utter_site_usage
+    #   how to make a post
+  - story: how_to_post
+    steps:
+      - intent: ask_how_to_post
+      - action: utter_how_to_post
+    #   how to search
+  - story: how_to_search
+    steps:
+      - intent: ask_how_to_search
+      - action: utter_how_to_search
+    #   how to make a new topic
+  - story: how_to_create_topic
+    steps:
+      - intent: ask_create_topic
+      - action: utter_create_topic
+    #   what is open sustainable tech
+  - story: information_open_tech
+    steps:
+      - intent: ask_open_tech
+      - action: utter_open_tech
+    #   how to comment post
+  - story: how_to_comment
+    steps:
+      - intent: ask_how_to_comment
+      - action: utter_how_to_comment
+    #   explain the voting system
+#   - story: information_voting
+#     steps:
+#       - intent: ask_voting
+#       - action: utter_voting

@@ -31,3 +31,7 @@ rules:
     steps:
       - intent: ask_info
       - action: utter_info
+  - rule: after thanks
+    steps:
+      - intent: thankyou
+      - action: utter_yourewelcome

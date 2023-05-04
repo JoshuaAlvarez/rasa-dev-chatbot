@@ -25,6 +25,17 @@ intents:
   - ask_info
   - inform_interest
   - sign_up
+  - ask_engineering
+  - ask_trending_topics
+  - ask_collaborate
+  - ask_learning
+  - ask_site_usage
+  - ask_how_to_post
+  - ask_how_to_search
+  - ask_create_topic
+  - ask_open_tech
+  - ask_how_to_comment
+  - ask_voting
 entities:
   - frequency
   - occupation
@@ -113,33 +124,65 @@ responses:
     - text: Encodice es un sitio web en el que encontrarás grupos de temas relacionados a la ingeniería sustentable y una comunidad de usuarios para compartir publicaciones y comentarios.
     - text: El objetivo de Encodice es facilitar el aprendizaje en el campo de la ingeniería ecológica acercando a expertos y principiantes a una comunidad activa.
   utter_ask_interest:
-    - text: Claro, ¿cuáles son tus intereses?
-        -> Energía renovable
-        -> Almacenamiento de energía
-        -> Sistemas de energía
+    - text: "Claro, ¿cuáles son tus intereses?"
+      buttons:
+        - title: Energía renovable
+          payload: Energía renovable
+        - title: Almacenamiento de energía
+          payload: Almacenamiento de energía
+        - title: Sistemas de energía
+          payload: Sistemas de energía
+  utter_how_to_post:
+    - text: "Para hacer una publicación presiona el botón 'Crear publicación' en el menú lateral izquierdo."
+  utter_how_to_search:
+    - text: "Para realizar una búsqueda haz click en la barra de búsqueda en la parte superior."
+  utter_create_topic:
+    - text: "Los usuarios registrados pueden crear un nuevo tema mediante el menú desplegable en la barra lateral izquierda."
+  utter_open_tech:
+    - text: "Open Sustainable Technology es un movimiento que combina los principios del software de código abierto y el desarrollo sostenible para crear tecnología que sea accesible, transparente y ambientalmente responsable. Su objetivo es fomentar la innovación y la colaboración en el desarrollo de tecnología que aborde los desafíos sociales y ambientales."
+  utter_how_to_comment:
+    - text: "Para realizar un comentario inicia sesión y selecciona la publicación de tu interés. Después escribe tu comentario en el recuadro correspondiente y da click a 'Comentar'."
   utter_topics:
     - condition:
         - type: slot
           name: interest
           value: "Energía renovable"
-      text: "Aquí están algunos temas sobre <b>Energía renovable<b>: <a href='https://phenomenal-taffy-a2b83e.netlify.app/tema/Fotovoltaica'>Fotovoltaica y Energía Solar</a>, <a href='https://phenomenal-taffy-a2b83e.netlify.app/tema/Energía_Eólica'>Energía eólica</a>, <a href='https://phenomenal-taffy-a2b83e.netlify.app/tema/EnergíaHidroeléctrica'>Energía hidroeléctrica</a>, <a href='https://phenomenal-taffy-a2b83e.netlify.app/tema/Energía_Geotérmica'>Energía geotérmica</a>, <a href='https://phenomenal-taffy-a2b83e.netlify.app/tema/Bioenergía'>Bioenergía</a>"
+      text: "Aquí están algunos temas sobre Energía renovable: \n\n[Fotovoltaica y Energía Solar](https://encodice.vercel.app/tema/Fotovoltaica) \n\n[Energía eólica](https://encodice.vercel.app/tema/Energía_Eólica) &#8599;\n\n[Energía hidroeléctrica](https://encodice.vercel.app/tema/EnergíaHidroeléctrica) &#8599;\n\n[Energía geotérmica](https://encodice.vercel.app/tema/Energía_Geotérmica) &#8599;\n\n[Bioenergía](https://encodice.vercel.app/tema/Bioenergía) &#8599;"
     - condition:
         - type: slot
           name: interest
           value: "Almacenamiento de energía"
-      text: "Aquí está un tema sobre <b>Almacenamiento de energía<b>: <a href='https://phenomenal-taffy-a2b83e.netlify.app/tema/Baterías'>Baterías</a>, <a href='https://phenomenal-taffy-a2b83e.netlify.app/tema/Hidrógeno'>Hidrógeno</a>"
+      text: "Aquí están los temas sobre Almacenamiento de energía: \n\n[Baterías](https://encodice.vercel.app/tema/Baterías) &#8599;\n\n[Hidrógeno](https://encodice.vercel.app/tema/Hidrógeno) &#8599;"
     - condition:
         - type: slot
           name: interest
           value: "Sistemas de energía"
-      text: "Aquí están algunos temas sobre <b>Sistemas de energía<b>: <a href='https://phenomenal-taffy-a2b83e.netlify.app/tema/ModeladoYOptimización'>Modelado y Optimización Energética</a>, <a href='https://phenomenal-taffy-a2b83e.netlify.app/tema/Monitoreo_de_Energía'>Monitoreo y Control de Energía</a>, <a href='https://phenomenal-taffy-a2b83e.netlify.app/tema/Distribución_Energía'>Distribución de Energía y Redes</a>, <a href='https://phenomenal-taffy-a2b83e.netlify.app/tema/Sistemas_Energéticos'>Conjuntos de datos sobre sistemas energéticos</a>"
+      text: "Aquí están algunos temas sobre Sistemas de energía: \n\n[Modelado y Optimización Energética](https://encodice.vercel.app/tema/ModeladoYOptimización) &#8599;\n\n[Monitoreo y Control de Energía](https://encodice.vercel.app/tema/Monitoreo_de_Energía) &#8599;\n\n[Distribución de Energía y Redes](https://encodice.vercel.app/tema/Distribución_Energía) &#8599;\n\n[Conjuntos de datos sobre sistemas energéticos](https://encodice.vercel.app/tema/Sistemas_Energéticos) &#8599;"
+
   utter_ask_survey:
-    - text: Gracias! Tu opinión es importante para nosotros. ¿Nos ayudarías respondiendo una breve encuesta?
+    - text: "Tu opinión es importante para nosotros. \n¿Nos ayudarías respondiendo una breve encuesta?"
   utter_info:
     - text: ¿Sobre qué necesitas información?
-    - text: Puedo darte información. ¿Qué es lo que buscas?
+    - text: "Puedo darte información. ¿Qué es lo que buscas?"
   utter_sign_up:
     - text: Puedes crear una cuenta dando click al botón "Regístrate" en la esquina superior derecha.
+  utter_engineering:
+    - text: "La ingeniería sustentable es una rama de la ingeniería que se enfoca en el diseño y desarrollo de sistemas y productos que minimizan el impacto ambiental y maximizan la eficiencia en el uso de recursos."
+  utter_yourewelcome:
+    - text: "De nada. ¿Hay algo más en lo que te pueda ayudar?"
+    - text: "Con gusto. No dudes en preguntar acerca de Encodice."
+    - text: "¡Estoy para servir! ¿Tienes otra duda?"
+  utter_trending_topics:
+    - text: "Aquí hay un enlace a algunos temas de moda:\n[Temas por popularidad](https://encodice.vercel.app/temasprincipales)&#8599;"
+  utter_collaborate:
+    - text: "Estos son algunos proyectos Open Source en los que puedes colaborar\n[Open Source Tech](https://encodice.vercel.app/proyectos)&#8599;"
+  utter_learning:
+    - text: "Puedes aprender más visitando esta página: \n[Aprende](https://encodice.vercel.app/aprende)&#8599;"
+  utter_site_usage:
+    - text: "En Encodice tu puedes iniciar sesión con un correo electrónico y contraseña, crear publicaciones haciendo clic en el botón 'Crear publicación', comentar las publicaciones, y realizar búsquedas en la barra de búsqueda."
+  utter_understood:
+    - text: "Entendido"
+    - text: "De acuerdo"
 actions:
   - submit_newsletter_form
   - utter_ask_survey

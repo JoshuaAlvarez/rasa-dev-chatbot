@@ -65,6 +65,7 @@ nlu:
       - Me ha encantado su plataforma
       - Esta página es genial
       - me gusta este sitio
+      - quiero dar mi opinión sobre esta página
   - intent: inform_occupation
     examples: |
       - Mi ocupación es [maestro](occupation)
@@ -219,3 +220,52 @@ nlu:
       - como suscribirme?
       - como crear una cuenta?
       - ¿Cómo me suscribo?
+      - como me registro?
+  - intent: ask_engineering
+    examples: |
+      - qué es la ingeniería sustentable?
+      - qué es la ingeniería ecológica?
+      - ¿ingeniería verde?
+  - intent: ask_trending_topics
+    examples: |
+      - Cuales son los temas más populares?
+      - Que es lo más popular en este momento?
+      - Donde puedo ver los temas más populares?
+  - intent: ask_collaborate
+    examples: |
+      - Quiero colaborar en un proyecto?
+      - En qué proyectos puedo colaborar?
+  - intent: ask_learning
+    examples: |
+      - Quiero aprender sobre tecnología sustentable
+      - Donde puedo aprender sobre tecnología sustentable?
+  - intent: ask_site_usage
+    examples: |
+      - Como usar el sitio?
+      - como uso esta página?
+  - intent: ask_how_to_post
+    examples: |
+      - como puedo publicar en el sitio?
+      - quiero hacer una pregunta
+      - como hacer una publicación?
+  - intent: ask_how_to_search
+    examples: |
+      - cómo buscar una publicación?
+      - cómo hacer una búsqueda?
+      - estoy buscando una publicación
+  - intent: ask_create_topic
+    examples: |
+      - cómo crear un nuevo tema?
+      - crear un tema nuevo
+      - quiero crear un nuevo subgrupo
+  - intent: ask_open_tech
+    examples: |
+      - que es la Tecnología Abierta Sustentable?
+      - que es Open Sustainable Tech?
+      - Open Source para la Ecología?
+      - Open Source para mejorar el medio ambiente
+  - intent: ask_how_to_comment
+    examples: |
+      - como comentar una publicación?
+      - como responder a un post?
+      - quiero comentar una publicación
